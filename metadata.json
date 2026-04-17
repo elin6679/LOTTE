@@ -1,0 +1,9 @@
+{
+  "name": "직관메이트",
+  "description": "KBO 팬들을 위한 올인원 커뮤니티 앱. 직관 메이트 매칭, 원정 버스 모집, 직관 다이어리, 구장 가이드 등 야구 팬들을 위한 필수 기능을 제공합니다.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": []
+}

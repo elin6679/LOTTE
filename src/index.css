@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Pretendard+Variable&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Pretendard", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: #050A18;
+  --color-surface: #121B32;
+  --color-surface-light: #1E2945;
+  --color-primary-brand: #E63946;
+  --color-text-main: #F8FAFC;
+  --color-text-dim: #94A3B8;
+  --color-accent-blue: #38BDF8;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-bg text-text-main antialiased transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface border border-white/5 rounded-2xl shadow-xl backdrop-blur-sm;
+  }
+}

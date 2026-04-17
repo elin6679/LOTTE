@@ -1,0 +1,142 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "App user profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "photoURL": { "type": "string" },
+        "ageRange": { "type": "string", "enum": ["10대", "20대", "30대", "40대", "50대 이상"] },
+        "gender": { "type": "string", "enum": ["남성", "여성", "선택안함"] },
+        "favoriteTeam": { "type": "string" },
+        "usualStadium": { "type": "string" },
+        "cheeringStyle": { "type": "string" },
+        "bio": { "type": "string" },
+        "mannerTemperature": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName", "email"]
+    },
+    "MatePost": {
+      "title": "MatePost",
+      "description": "A post to find a baseball mate",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorUid": { "type": "string" },
+        "authorName": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "stadium": { "type": "string" },
+        "team": { "type": "string" },
+        "seatArea": { "type": "string" },
+        "maxParticipants": { "type": "number" },
+        "currentParticipants": { "type": "number" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "closed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorUid", "date", "stadium", "team"]
+    },
+    "DiaryEntry": {
+      "title": "DiaryEntry",
+      "description": "A personal baseball diary entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "uid": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "stadium": { "type": "string" },
+        "opponent": { "type": "string" },
+        "result": { "type": "string", "enum": ["win", "loss", "draw"] },
+        "myTeamResult": { "type": "string", "enum": ["win", "loss"] },
+        "seatArea": { "type": "string" },
+        "companions": { "type": "string" },
+        "mvp": { "type": "string" },
+        "emotion": { "type": "string" },
+        "content": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "date", "stadium"]
+    },
+    "Fancam": {
+      "title": "Fancam",
+      "description": "A post containing a fan-taken photo or video",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "mediaUrl": { "type": "string" },
+        "mediaType": { "type": "string", "enum": ["image", "video"] },
+        "caption": { "type": "string" },
+        "stadium": { "type": "string" },
+        "likes": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "mediaUrl", "mediaType"]
+    },
+    "BusPost": {
+      "title": "BusPost",
+      "description": "A post to recruit fans for an away game bus",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "departure": { "type": "string" },
+        "destination": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "cost": { "type": "string" },
+        "totalSeats": { "type": "number" },
+        "remainingSeats": { "type": "number" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "departure", "destination", "date", "time"]
+    },
+    "BusRequest": {
+      "title": "BusRequest",
+      "description": "A request to join a specific bus",
+      "type": "object",
+      "properties": {
+        "busId": { "type": "string" },
+        "uid": { "type": "string" },
+        "userName": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["busId", "uid", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/matePosts/{postId}": {
+      "schema": "MatePost",
+      "description": "Mate matching posts"
+    },
+    "/diaries/{diaryId}": {
+      "schema": "DiaryEntry",
+      "description": "User direct관 diaries"
+    },
+    "/fancams/{fancamId}": {
+      "schema": "Fancam",
+      "description": "Shared fan photos and videos"
+    },
+    "/busPosts/{busId}": {
+      "schema": "BusPost",
+      "description": "Away bus recruitment posts"
+    },
+    "/busRequests/{requestId}": {
+      "schema": "BusRequest",
+      "description": "Requests to join an away bus"
+    }
+  }
+}
